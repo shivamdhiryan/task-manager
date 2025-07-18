@@ -9,12 +9,12 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
 app.use(session({
-    secret: "heyHelloIamshivam",
+    secret: process.env.SECRET_KEY,
     resave: false,
     saveUninitialized: true,
     cookie: { maxAge: 1000 * 60 * 60 * 24 }
 }))
-// console.log(process.env.OPENAI_API_KEY)
+
 import authRoute from './routes/auth.route.js'
 import taskRoute from './routes/task.route.js';
 app.use('/api/v1/auth', authRoute);
@@ -25,7 +25,7 @@ app.get('/', (req, res) => {
 })
 
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`server is listening on port ${PORT}`);
 })

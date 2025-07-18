@@ -18,7 +18,7 @@ export const createTask = async (req, res) => {
           }
           task.push(newTask);
           await writeTask(task);
-          res.status(200).json({ msg: 'data is read successfully', task });
+          res.status(200).json({ msg: 'Task is created successfully', newTask });
      } catch (error) {
           console.error('internal server error', error)
           res.status(500).json({ msg: 'internal server error to create task' });
@@ -59,7 +59,7 @@ export const deleteTask = async (req, res) => {
           const task = await readTask();
           const filterTask = task.filter((item) => item.id != id);
           await writeTask(filterTask);
-          res.status(200).json({ msg: 'task is deleted successfully deleted' });
+          res.status(200).json({ msg: 'task is deleted successfully' });
      } catch (error) {
           console.error(error);
           res.status(500).json({ msg: 'internal server error in deleted task' });
